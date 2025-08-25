@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter Suggestion - Computer Studies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #1a73e8;
+    }
+
+    .question {
+      margin-bottom: 25px;
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      min-height: 70px;
+      resize: vertical;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    textarea:focus, input[type="text"]:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 5px rgba(26,115,232,0.3);
+    }
+
+    button {
+      display: block;
+      margin: 20px auto 0;
+      padding: 12px 25px;
+      border: none;
+      background: #1a73e8;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #1558b0;
+    }
+
+    .saved-message {
+      text-align: center;
+      color: green;
+      font-weight: 600;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .quiz {
+      margin-top: 40px;
+      border-top: 2px solid #eee;
+      padding-top: 30px;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
+    .result {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .correct { color: green; }
+    .wrong { color: red; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chapter Suggestions - Q&A</h1>
+    
+    <!-- Solved Questions -->
+    <div class="question">
+      <p>1. What is a template? List any three templates that you find on your computer.</p>
+      <textarea id="q1">A template is a pre-designed document layout used to create consistent documents. Examples: Word template, Excel template, PowerPoint template.</textarea>
+    </div>
+
+    <div class="question">
+      <p>2. How can you change the background of a slide? Write the options available.</p>
+      <textarea id="q2">You can change the background of a slide by using: Solid fill, Gradient fill, Picture or texture fill, Pattern fill.</textarea>
+    </div>
+
+    <div class="question">
+      <p>3. What is a theme? How can it be useful?</p>
+      <textarea id="q3">A theme is a set of design elements like colors, fonts, and effects that apply consistently across all slides. It is useful to make presentations look professional and consistent.</textarea>
+    </div>
+
+    <div class="question">
+      <p>4. How will you change the color scheme of a theme? Mention any three themes.</p>
+      <textarea id="q4">You can change the color scheme from the Design tab → Variants → Colors. Examples of themes: Office Theme, Ion, Organic.</textarea>
+    </div>
+
+    <div class="question">
+      <p>5. Which option is used to change the background with a blend of different colors?</p>
+      <textarea id="q5">The Gradient fill option is used to change the background with a blend of different colors.</textarea>
+    </div>
+
+    <button onclick="saveAnswers()">Save Answers</button>
+    <div class="saved-message" id="savedMsg">✅ Your answers have been saved!</div>
+
+
+    <!-- Quiz Section -->
+    <div class="quiz">
+      <h2>Test Yourself - Quiz</h2>
+      <div class="quiz-question">
+        <p>1. What is a template? Give examples.</p>
+        <input type="text" id="quiz1">
+      </div>
+      <div class="quiz-question">
+        <p>2. Name any two options available to change the background of a slide.</p>
+        <input type="text" id="quiz2">
+      </div>
+      <div class="quiz-question">
+        <p>3. What is a theme? Why is it useful?</p>
+        <input type="text" id="quiz3">
+      </div>
+      <div class="quiz-question">
+        <p>4. How do you change the color scheme of a theme? Mention any theme.</p>
+        <input type="text" id="quiz4">
+      </div>
+      <div class="quiz-question">
+        <p>5. Which option allows you to fill the background with blended colors?</p>
+        <input type="text" id="quiz5">
+      </div>
+
+      <button onclick="checkQuiz()">Submit Quiz</button>
+      <div class="result" id="quizResult"></div>
+    </div>
+  </div>
+
+  <script>
+    // Save answers
+    function saveAnswers() {
+      const answers = {
+        q1: document.getElementById('q1').value,
+        q2: document.getElementById('q2').value,
+        q3: document.getElementById('q3').value,
+        q4: document.getElementById('q4').value,
+        q5: document.getElementById('q5').value,
+      };
+      localStorage.setItem('chapterAnswers', JSON.stringify(answers));
+      const msg = document.getElementById('savedMsg');
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 2500);
+    }
+
+    // Load saved answers
+    window.onload = () => {
+      const saved = JSON.parse(localStorage.getItem('chapterAnswers'));
+      if (saved) {
+        document.getElementById('q1').value = saved.q1;
+        document.getElementById('q2').value = saved.q2;
+        document.getElementById('q3').value = saved.q3;
+        document.getElementById('q4').value = saved.q4;
+        document.getElementById('q5').value = saved.q5;
+      }
+    }
+
+    // Quiz Checking
+    function checkQuiz() {
+      const answers = {
+        quiz1: "template",
+        quiz2: "background",
+        quiz3: "theme",
+        quiz4: "color",
+        quiz5: "gradient"
+      };
+
+      let score = 0;
+      if (document.getElementById('quiz1').value.toLowerCase().includes("template")) score++;
+      if (document.getElementById('quiz2').value.toLowerCase().includes("fill")) score++;
+      if (document.getElementById('quiz3').value.toLowerCase().includes("theme")) score++;
+      if (document.getElementById('quiz4').value.toLowerCase().includes("theme")) score++;
+      if (document.getElementById('quiz5').value.toLowerCase().includes("gradient")) score++;
+
+      const result = document.getElementById('quizResult');
+      result.style.display = 'block';
+      result.innerHTML = `You scored <span class="${score >=3 ? 'correct':'wrong'}">${score}/5</span>`;
+    }
+  </script>
+</body>
+</html>

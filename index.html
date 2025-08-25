@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abir Classroom - Computer Studies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --primary-light: #e8f0fe;
+      --secondary: #4285f4;
+      --dark: #202124;
+      --light: #f8f9fa;
+      --gray: #5f6368;
+      --white: #ffffff;
+      --gradient: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --glass: rgba(255, 255, 255, 0.7);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2rem;
+      margin: 50px 0 25px;
+      color: var(--dark);
+      position: relative;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: 0.3s;
+      padding: 20px;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .answer {
+      background: var(--primary-light);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    /* Chapter Suggestion */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 25px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: var(--card-shadow);
+    }
+
+    .chapter-item {
+      padding: 12px 15px;
+      margin-bottom: 10px;
+      background: var(--primary-light);
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .chapter-item:hover {
+      background: #dfe9fc;
+      transform: translateX(5px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 50px 20px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .socials a {
+      color: white;
+      margin-right: 15px;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      color: var(--primary);
+    }
+
+    /* Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-laptop-code"></i> Abir Classroom
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="Chapter.html">Study Materials</a></li>
+          <li><a href="question.html">Question Papers</a></li>
+          <li><a href="suggestion.html">Chapter Suggestions</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+ <!-- Hero -->
+<section class="hero">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1>Computer Studies Learning Platform</h1>
+      <p>Access solved question papers, chapter suggestions, and study materials for effective learning.</p>
+      <a href="Chapter.html" class="cta-btn">Explore Materials</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Hero Section */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background: url("Ferrari.png") no-repeat center center/cover; /* replace with your image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* dark overlay for readability */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  max-width: 700px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.cta-btn {
+  background: #ff9800;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #e68900;
+}
+</style>
+
+
+  <!-- Solved Question Papers -->
+  <h2 class="section-title">Solved Question Papers</h2>
+  <div class="card-grid" data-animate>
+    <div class="card">
+      <div class="card-header">Section A</div>
+      <p><strong>Q1:</strong> Device invented by the Chinese? <br><span class="answer">Abacus</span></p>
+      <p><strong>Q2:</strong> Input form for tabulating machines? <br><span class="answer">Punched Cards</span></p>
+    </div>
+    <div class="card">
+      <div class="card-header">Section A (Continued)</div>
+      <p><strong>Q4:</strong> Only language computer understands? <br><span class="answer">Binary</span></p>
+      <p><strong>Q5:</strong> Software to manage devices? <br><span class="answer">Device Driver</span></p>
+    </div>
+    <div class="card">
+      <div class="card-header">True/False</div>
+      <p>48 patterns in fill option? <span class="answer">True</span></p>
+      <p>Can’t change theme colors? <span class="answer">False</span></p>
+    </div>
+  </div>
+
+  <!-- Chapter Suggestions -->
+  <h2 class="section-title">Chapter Suggestions</h2>
+  <div class="glass-card" data-animate>
+    <ul>
+      <li class="chapter-item"><i class="fas fa-book"></i> Enhancing Presentations</li>
+      <li class="chapter-item"><i class="fas fa-book"></i> Using Built-in Templates</li>
+      <li class="chapter-item"><i class="fas fa-book"></i> Color Schemes & Themes</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About</h3>
+        <p>A platform dedicated to quality computer studies resources for students.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <p><a href="#">Study Materials</a></p>
+        <p><a href="#">Question Papers</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <div class="socials">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Abir Classroom. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll("[data-animate]").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
